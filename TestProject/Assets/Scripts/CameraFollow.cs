@@ -1,0 +1,80 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class CameraFollow : MonoBehaviour {
+	
+	[SerializeField]
+	private float xMax;
+
+	[SerializeField]
+	private float yMax;
+
+	[SerializeField]
+	private float xMin;
+
+	[SerializeField]
+	private float yMin;
+
+	private Transform target;
+
+    private Vector3 something;
+
+    private Vector3 anotherthing;
+
+    private Vector3 max;
+
+    private Vector3 min;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Start () 
+	{
+
+		target = GameObject.Find ("Player").transform;
+
+
+        Invoke("thatthing", 4f);
+    }
+
+    void thatthing()
+
+    {
+
+        max = new Vector3(Random.Range(0, 5), 0);
+
+        min = new Vector3(Random.Range(0, -5), 0);
+
+        anotherthing = Vector3.Lerp(max,min,  0.00000000000000000000000000000000000000000000001f);
+
+        Invoke("thatthing", 4f);
+
+    }
+
+
+    void Update ()
+    {
+
+        something = new Vector3(Mathf.Clamp(target.position.x, xMin, xMax), Mathf.Clamp(target.position.y, yMin, yMax), -10f);
+
+     }
+
+
+   
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	void FixedUpdate () 
+
+	{
+        transform.position = Vector3.Lerp(transform.position, something+anotherthing, 0.03f);
+    }
+
+
+    
+
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
