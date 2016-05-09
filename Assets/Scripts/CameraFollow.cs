@@ -45,7 +45,7 @@ public class CameraFollow : MonoBehaviour {
 
         min = new Vector3(Random.Range(0, -5), 0);
 
-        anotherthing = Vector3.Lerp(max,min,  0.00000000000000000000000000000000000000000000001f);
+        anotherthing = Vector3.Lerp(max,min,  0.1f * Time.deltaTime);
 
         Invoke("thatthing", 4f);
 
@@ -55,7 +55,7 @@ public class CameraFollow : MonoBehaviour {
     void Update ()
     {
 
-        something = new Vector3(Mathf.Clamp(target.position.x, xMin, xMax), Mathf.Clamp(target.position.y, yMin, yMax), -10f);
+        something = new Vector3(Mathf.Clamp(target.position.x, xMin, xMax), Mathf.Clamp(target.position.y, yMin, yMax), transform.position.z);
 
      }
 
@@ -68,7 +68,7 @@ public class CameraFollow : MonoBehaviour {
 	void FixedUpdate () 
 
 	{
-        transform.position = Vector3.Lerp(transform.position, something+anotherthing, 0.03f);
+        transform.position = Vector3.Lerp(transform.position, something+anotherthing, 0.8f * Time.deltaTime);
     }
 
 
